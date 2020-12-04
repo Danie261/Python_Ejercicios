@@ -1,152 +1,164 @@
+#11) Frecuencia de caracteres
 
+print("*"*10)
+alfabeto="abcdefghijklmnñopqrstuvwxyz"
+veces=0
+texto=input("Escribe un texto: ")
+texto.lower()
+for i in alfabeto:
+    if i in texto:
+        veces=texto.count(i)
+        if veces==1:
+            print("\nLa letra '{}' aparece 1 vez".format(i.upper()))
+        else:
+            print("\nLa letra '{}' aparece {} veces".format(i.upper(),veces))
 
+#12) Calculadora de IVA
+print("*"*10)
+print("\nCaso A\n")
+precio=float(input("¿Cuánto es el precio del producto sin IVA?: "))
+Iva=1.21#(21%)
+print("\nCálculo del precio con IVA:") 
+print(f"{precio} euros * IVA(21%)= {round((precio*Iva),2)} euros")
 
+print("\nCaso B\n")
+precio_IVA=float(input("¿Cuánto cuesta el producto con el IVA incluido?: "))
+print("\nCálculo del precio sin IVA")
+print(f"{precio_IVA} euros / IVA(21%) = {round((precio_IVA/Iva),2)} euros")
 
+#13) Edad
+print("*"*10)
+nacimiento=int(input("\nDime en qué año naciste: "))
+edad=2020-nacimiento
+print(f"""\nAl nacer en {nacimiento}, tienes {edad} años,
+por lo que el año que viene cumples {edad+1} años""")
 
-
-
-###BLOQUE 1.Fundamentos de Programación
-
-#1) Comparar dos numeros
-print("Programa para comparar dos números\n")
-num1=int(input("Dime un número: "))
-num2=int(input("\nDime un segundo número: "))
-if num1>num2:
-  print("\n{} es mayor que {}".format(num1,num2))
-elif num1<num2:
-  print("\n{} es menor que {}".format(num1,num2))
-elif num1==num2:
-  print("\nAmbos numeros son iguales")
-
-#2) Comparar varias parejas de numeros
-print("\n**************************************")
-print("Programa para comparar dos números")
+#14) ¿Está el número en la lista?
+print("*"*10)
+numeros=[1,3,9]
 pidiendo=True
-while pidiendo==True:
-    num1=int(input("\nDime un número: "))
-    num2=int(input("Dime un segundo número: "))
-    if num1>0 and num2>0:
-        if num1>num2:
-            print("\n{} es mayor que {}".format(num1,num2))
-        elif num1<num2:
-            print("\n{} es menor que {}".format(num1,num2))
-        elif num1==num2:
-            print("\nAmbos numeros son iguales")
+num=int(input("\nDime un número entre 0 y 9: "))
+while num<0 or num>9:
+    num=int(input("Dime un número entre 0 y 9: "))
+if num in numeros:
+    print("\nEl número se encuentra dentro de la lista")    
+#15) Números aleatorios con y sin repetición
+print("*"*10)
+
+from random import randint
+lista_rep=[]
+lista_no_rep=[]
+lista3=[]
+for i in range(10):
+    lista_rep+=[randint(1,20)]
+lista_rep.sort()    
+for i in range(100):
+    n=randint(1,20)
+    if len(lista_no_rep)==10:
+        break
+    if n not in lista_no_rep:
+        lista_no_rep+=[n]
+lista_no_rep.sort()        
+for i in lista_no_rep:
+    if i in lista_rep:
+        lista3+=[i]
+lista3.sort()
+
+print(lista_no_rep) 
+print(lista_rep) 
+print(lista3)      
+
+#16) Ordenar una lista
+print("*"*10)
+lista=[]
+for i in range(10):
+    lista+=[random.randint(1,50)]
+print(lista)
+lista2=[]
+lista2+=[min(lista)]
+lista2+=[max(lista)]
+lista.remove(min(lista))
+lista.remove(max(lista))
+
+for i in range(1,9):      
+    lista2.insert((len(lista2)-i),max(lista))
+    lista.remove(max(lista))
+print(lista2)
+
+#17) Función separa
+print("*"*10)
+lista=[]
+lista_pares=[]
+lista_impares=[]
+suma_par=0
+suma_impar=0
+for i in range(15):
+    lista+=[random.randint(-20,20)]
+for j in lista:
+    if j%2==0:
+        if j not in lista_pares:
+            lista_pares+=[j]
+            suma_par+=j
     else:
-        pidiendo=False
-        print("Valor introducido no correcto")
-
-#3) Elevar al cuadrado
-print("\n******************************************")
-print("Cuadrado de todos los números del 1 al 100\n")
-for i in range(1,101):
-    print(i**2)
-
-
-#4) Listar numeros pares
-print("****************")    
-num0=int(input("Dime un número: "))
-num=int(input("Dime otro número: "))
-if num0<num:
-    print("Números pares comprendidos entre {} y {}".format(num0,num))
-    for i in range(num0,num):
-        if i%2==0:
-            print(i,end=" ")
-elif num0>num:
-    print("Números pares comprendidos entre {} y {}".format(num,num0))
-    for i in range(num,num0):
-        if i%2==0:
-            print(i,end=" ")
-            
+        if j not in lista_impares:
+            lista_impares+=[j]
+            suma_impar+=j          
+lista_pares.sort()
+lista_impares.sort()
+print(f"Lista de pares: {lista_pares}")
+print(f"Lista de impares: {lista_impares}")
+if suma_par>suma_impar:
+    print(f"La suma de la lista de números pares, es {suma_par}, que es mayor que la de la lista de números impares; {suma_impar}")                   
+elif suma_impar>suma_par:
+    print(f"La suma de la lista de números impares, es {suma_impar}, que es mayor que la de la lista de números pares; {suma_par}")
 else:
-    print("Los números deben ser distintos\n")
-    
-#5) Media de una serie de números
-print("*********************")
+    print("La suma de ambas listas de números es igual")       
+
+#18) Binario a decimal
+print("*"*10)
 suma=0
-contador=0
-pidiendo=True
-while pidiendo==True:
-    num=float(input("Introduce un número: "))
-    if num>0:
-        suma+=num
-        contador+=1
+num=input("Introduce un número binario: ")
+indice=0
+for i in num:
+    if i=="1":
+        suma+=1*2**((len(num)-1)-indice) 
+        print("1*2**{}".format(len(num)-1-indice),end=" + ")
     else:
-        pidiendo=False
-
-print(f"\nLa suma de los números introducidos es {suma}")
-print("La media de los números introducidos es: {}".format(round((suma/contador),2)))
-            
-
-#6) Calculadora
-print("***************")
-num=int(input("Introduce un número: "))
-num1=int(input("Introduce un segundo número: "))
-while num<0 or num1<0:
-    print("\nHas introducido un número no válido\n")
-    num=int(input("Introduce un número: "))
-    num1=int(input("Introduce un segundo número: "))
-print(f"\nSuma: {num} + {num1} = {num+num1}")
-print(f"Resta: {num} - {num1} = {num-num1}")
-print(f"Multiplicación: {num} * {num1} = {num*num1}")
-print(f"División: {num} / {num1} = {num/num1}")
-print(f"División Entera: {num} // {num1} = {num//num1}")
-print(f"Resto: {num} % {num1} = {num%num1}")
-print(f"Potencias: {num} ** {num1} = {num**num1}")
+        print("0*2**{}".format(len(num)-1-indice), end=" + ")
+    if indice==(len(num)-1):
+        if i=="1": 
+            print("1*2**{} = {}".format((len(num)-1-indice),suma))
+        else:
+            print("1*2**{} = {}".format((len(num)-1-indice),suma))           
+    indice+=1 
+print(f"El número binario '{num}'', corresponde en número decimal a '{suma}'")
 
 
-#7) Divisores de un número
-print("**********")
-import random
-numero=random.randint(2,1000)
-print("Divisores de", numero)
-for i in range(1,numero+1):
-    if numero%i==0:
-        print(i)
+#19) Decimal a binario
+print("*"*10)
 
-#8) Comparar medias de aleatorios
+n=int(input("Introduce un número decimal: "))
+print("\nndecimal       entero           resto")
+cifras=[]
+dividiendo=True
+while dividiendo==True:
+    print("{}{:17}{:17}".format(n,n//2,n%2))
+    n=n//2
+    cifras+=[n%2]
+    if n//2==0:
+        print("{}{:17}{:17}".format(n,n//2,n%2))
+        cifras+=[n%2]
+        break
+print("\nEl número decimal",n,"equivale en binario a ", end="")
+for j in cifras:
+    print(f"{j}",end="")
 
-suma=0
-suma2=0
-print("\n*************")
-print("Números para primera media:")
-for i in range(12):
-    numero=random.randint(0,100)
-    suma+=numero
-    print(numero, end=" ")
-media=round(suma/12,2)
-print(". Y su media es: {}".format(media))
-print("\nNúmeros para segunda media:")
-for j in range(12):
-    numero=random.randint(0,100)
-    suma2+=numero
-    print(numero, end=" ")
-media2=round(suma2/12,2)    
-print(". Y su media es: {}\n".format(media2))
-if media>media2:
-    print(media, "es mayor que", media2)
-else:
-    print(media, "es menor que", media2)
 
-#9) Tabla de multiplicar
 
-print("***************************")
-num=int(input("Introduce un número del 1 al 15 para mostrar su tabla de multplicar: "))
-while num<1 or num>15:
-    print("\nNúmero incorrecto")
-    num=int(input("Introduce un número del 1 al 15 para mostrar su tabla de multiplicar: "))
-for i in range(1,11):
-    print("{} * {} = {}".format(num,i,num*i))
-    
-#10) Tablas de multiplicar hasta 15*15
-    
-print("\n*************\n")
-for j in range(1,15):
-    print(f"Tabla del {j}\n")
-    for i in range(1,11):
-        print("{} * {} = {}".format(j,i,j*i))
-    print()    
-       
+
+
+
+
   
 
     
